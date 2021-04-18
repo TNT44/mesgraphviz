@@ -1,0 +1,62 @@
+digraph G {
+  graph [fontname = "Handlee"];
+  node [fontname = "Handlee", style=filled];
+  edge [fontname = "Handlee"];
+  bgcolor=transparent;
+  rankdir="TB"
+  
+  listetrade [shape = "rectangle", label="listetrade", color="turquoise"];
+  showtrade [shape = "rectangle", label="showtrade", color="turquoise"]; 
+  addtransaction [shape = "rectangle", label="addtransaction", color="turquoise"]; 
+  createtrade [shape = "rectangle", label="createtrade", color="turquoise"]; 
+  modtransaction [shape = "rectangle", label="modtransaction", color="turquoise"]; 
+  
+  encours [shape = "rectangle", label="encours", color="turquoise"];
+  
+  Menu [shape = "rectangle", label="menu", color="turquoise"];
+  
+  ecrlistetrade [label="ecrlistetrade \n portefeuille \n get /portefeuille/id"]
+  #ecrdetailtrade [label="trade \n get /trade/id"]
+  
+  ecrcreatetrade [label="ecrcreatetrade \n portefeuille \n get /portefeuille/id/trade"]
+  
+  ecrencours [label="ecrencours \n encours \n get /encours"]
+  
+  ecrdetailtrade [label="ecrdetailtrade \n trade \n get /trade/id"]
+  
+  ecrmodtransaction [label="ecrmodtransaction \n trade \n get /transaction/id"]
+  
+  ecraddtransaction [label="ecraddtransaction \n trade \n get /trade/id/new"]
+  
+  posttrade [shape = "rectangle",label="trade \n post /trade/", color="green", style="filled"]
+  puttransaction [shape = "rectangle",label="transaction \n put /transaction/id", color="green", style="filled"]      
+  posttransaction [shape = "rectangle",label="transaction \n post /transaction/", color="green", style="filled"]
+  
+  listetrade -> ecrdetailtrade [color="lightblue"];
+  ecrdetailtrade -> showtrade[color="lightblue"];
+  listetrade -> ecrcreatetrade [color="lightblue"];
+  ecrcreatetrade -> createtrade [color="lightblue"];
+  showtrade -> ecraddtransaction [color="lightblue"];
+  ecraddtransaction -> addtransaction [color="lightblue"];
+  showtrade -> ecrmodtransaction[color="lightblue"];
+  ecrmodtransaction -> modtransaction[color="lightblue"];
+  createtrade -> posttrade -> ecrdetailtrade;   
+  addtransaction -> posttransaction -> ecrdetailtrade;
+  modtransaction -> puttransaction ->ecrdetailtrade
+  
+  Menu -> ecrencours [color="lightblue"];
+  ecrencours -> encours [color="lightblue"]
+  Menu -> ecrlistetrade;
+  ecrlistetrade -> listetrade [color="lightblue"]
+  
+  
+  encours -> ecrcreatetrade [color="orchid1",label="reflexion ??"]
+  encours -> ecrdetailtrade [color="lightblue"]
+  encours -> ecraddtransaction [color="lightblue"]
+  
+
+Pagehtml [shape = "rectangle", label="Pagehtml", color="turquoise"];
+Action [shape = "losange", label = "Action", color="green"]
+calldest [label = "Call"]
+
+}
